@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import { FileUpload } from '@/components/FileUpload';
+import { ExportButtons } from '@/components/ExportButtons';
 import { DataSummary } from '@/components/DataSummary';
 import { DataTypesTable } from '@/components/DataTypesTable';
 import { NumericStatsTable } from '@/components/NumericStatsTable';
@@ -202,15 +203,18 @@ const Index = () => {
                   {dataProfile.shape.rows.toLocaleString()} rows × {dataProfile.shape.columns} columns
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setDataProfile(null);
-                  setAiRecommendations(null);
-                }}
-                className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground text-sm font-medium transition-colors"
-              >
-                Analyze New File
-              </button>
+              <div className="flex items-center gap-3">
+                <ExportButtons dataProfile={dataProfile} aiRecommendations={aiRecommendations} />
+                <button
+                  onClick={() => {
+                    setDataProfile(null);
+                    setAiRecommendations(null);
+                  }}
+                  className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground text-sm font-medium transition-colors"
+                >
+                  Analyze New File
+                </button>
+              </div>
             </div>
 
             {/* Overview Stats */}
